@@ -9,45 +9,54 @@ export const Container = styled.div`
   .content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    text-align: center;
+    gap: 5rem;
 
-    h1 {
-      color: #ffffff;
-      font-size: 48px;
-      width: 650px;
-      text-align: center;
-      line-height: 1.5;
-    }
+    .box-1 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      h1 {
+        color: #ffffff;
+        font-size: 48px;
+        width: 650px;
+        // text-align: center;
+        line-height: 1.5;
+      }
 
-    p {
-      color: #ffffff;
-      font-size: 24px;
-    }
+      h4 {
+        color: #ffffff;
+        font-size: 24px;
+      }
 
-    .question {
-      color: #ffffff;
-      background-color: #2a2a2a4d;
-      border: 1px solid #cdcdcd;
-      border-radius: 5px;
-      width: 20%;
-      height: 56px;
-      text-align: center;
-      margin: 20px;
       p {
+        color: #ffffff;
+        background-color: #2a2a2a4d;
+        border: 1px solid #cdcdcd;
+        border-radius: 5px;
+        padding: 20px;
+        text-align: center;
         font-size: 20px;
-        margin-top: 15px;
       }
     }
 
     .menu {
       display: flex;
+      justify-content: space-around;
+      gap: 15rem;
+
       button {
         background-color: #ffffff;
         border-radius: 100%;
         width: 45px;
         height: 45px;
         cursor: pointer;
+      }
+
+      p {
+        color: #ffffff;
+        font-size: 18px;
       }
     }
   }
