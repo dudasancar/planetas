@@ -4,13 +4,12 @@ import background from "../../assets/Background.png";
 export const Container = styled.div`
   background-image: url(${background});
   background-size: cover;
-  height: 100vh;
 
   .content {
     padding: 50px;
     display: flex;
     flex-wrap: wrap;
-    jutify-content: flex-start;
+    justify-content: flex-start;
     width: 90%;
 
     .back-home {
@@ -68,6 +67,62 @@ export const Container = styled.div`
             color: #ffffff;
             margin-left: 30px;
             margin-right: 30px;
+          }
+        }
+      }
+    }
+
+    .add {
+      border: 1px solid #ffffff;
+      border-radius: 5px;
+      width: 220px;
+      height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      margin: 63px;
+
+      svg {
+        color: #ffffff;
+      }
+
+      p {
+        color: #ffffff;
+        font-size: 24px;
+        margin-left: 15px;
+      }
+    }
+
+    .planets {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      justify-items: center;
+      margin: 40px 0 0 20px;
+
+      .planet {
+        background: #2a2a2a;
+        border-radius: 5px;
+        width: 220px;
+        margin: 63px;
+
+        div {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 0px 0px 5px 5px;
+
+          p {
+            color: #ffffff;
+            font-size: 24px;
+            margin-right: 15px;
+            display: flex;
+            align-self: start;
+          }
+
+          svg {
+            color: #ffffff;
+            margin-left: 10px;
           }
         }
       }

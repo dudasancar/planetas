@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container } from "./styles";
 import Header from "../../components/Header";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import SearchIcon from "@mui/icons-material/Search";
+import AddCircleOutlineRoundedIcon from "@mui/icons-material/AddCircleOutlineRounded";
+import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
+import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
 import { useNavigate } from "react-router-dom";
 import {
   Button,
@@ -16,8 +19,11 @@ import {
 } from "@mui/material";
 import { useFormik } from "formik";
 import { initialValues, validationSchema } from "./validation";
+import { getPlanetsCards } from "../../services/ListPlanetsCards";
+import Table from "./Table";
 
 const Planetas: React.FC = () => {
+  const [listPlanets, setListPlanets] = useState([]);
   const navigate = useNavigate();
 
   const formik = useFormik({
@@ -27,6 +33,17 @@ const Planetas: React.FC = () => {
       // alert(JSON.stringify(values, null, 2));
     },
   });
+
+  useEffect(() => {
+    getPlanetsCards()
+      .then((response: any) => {
+        setListPlanets(response);
+        console.log(response);
+      })
+      .catch((error: any) => {
+        console.log(error);
+      });
+  }, []);
 
   const handleSearch = (event: any) => {};
   return (
@@ -123,6 +140,23 @@ const Planetas: React.FC = () => {
             </form>
           </div>
         </div>
+        <div className="planets">
+          <div className="add">
+            <AddCircleOutlineRoundedIcon />
+            <p>Adicionar</p>
+          </div>
+          {listPlanets.map((planet: any) => (
+            <div className="planet">
+              <img src={planet?.image} />
+              <div style={{ backgroundColor: planet?.color }}>
+                <p>{planet?.name}</p>
+                <DeleteOutlineRoundedIcon />
+                <ArrowForwardRoundedIcon />
+              </div>
+            </div>
+          ))}
+        </div>
+        <Table />
       </div>
     </Container>
   );
