@@ -21,9 +21,11 @@ import { useFormik } from "formik";
 import { initialValues, validationSchema } from "./validation";
 import { getPlanetsCards } from "../../services/ListPlanetsCards";
 import Table from "./Table";
+import ModalDelete from "./Modal";
 
 const Planetas: React.FC = () => {
   const [listPlanets, setListPlanets] = useState([]);
+  const [openModalDelete, setOpenModalDelete] = useState(false);
   const navigate = useNavigate();
 
   const formik = useFormik({
@@ -48,6 +50,10 @@ const Planetas: React.FC = () => {
   const handleSearch = (event: any) => {};
   return (
     <Container>
+      <ModalDelete
+        closeModal={() => setOpenModalDelete(false)}
+        open={openModalDelete}
+      />
       <Header />
       <div className="content">
         <div className="back-home">
@@ -142,7 +148,9 @@ const Planetas: React.FC = () => {
         </div>
         <div className="planets">
           <div className="add">
-            <AddCircleOutlineRoundedIcon />
+            <AddCircleOutlineRoundedIcon
+              onClick={() => navigate("/adicionarPlaneta")}
+            />
             <p>Adicionar</p>
           </div>
           {listPlanets.map((planet: any) => (
@@ -150,8 +158,12 @@ const Planetas: React.FC = () => {
               <img src={planet?.image} />
               <div style={{ backgroundColor: planet?.color }}>
                 <p>{planet?.name}</p>
-                <DeleteOutlineRoundedIcon />
-                <ArrowForwardRoundedIcon />
+                <DeleteOutlineRoundedIcon
+                  onClick={() => setOpenModalDelete(true)}
+                />
+                <ArrowForwardRoundedIcon
+                  onClick={() => navigate("/explorarPlaneta")}
+                />
               </div>
             </div>
           ))}

@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Planetas from "./pages/Planetas";
 import ExplorePlanets from "./pages/ExplorePlanets";
+import AddPlanet from "./pages/AddPlanet";
 
 function RoutesPlanetas() {
   return (
@@ -13,6 +14,7 @@ function RoutesPlanetas() {
         <Route path="/home" element={<Home />} />
         <Route path="/planetas" element={<Planetas />} />
         <Route path="/explorarPlaneta" element={<ExplorePlanets />} />
+        <Route path="/adicionarPlaneta" element={<AddPlanet />} />
       </Routes>
     </BrowserRouter>
   );

@@ -32,15 +32,27 @@ export const Container = styled.div`
       margin-top: 5rem;
 
       .MuiBox-root {
-        img {
+        div {
           width: 400px;
-          margin-left: 20px;
-        }
+          height: 400px;
+          border: 1px solid #cdcdcd;
+          border-radius: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
 
-        svg {
-          color: #fff;
-          width: 80px;
-          height: 80px;
+          svg {
+            color: #fff;
+            width: 35px;
+            height: 35px;
+            margin-bottom: 10px;
+          }
+
+          p {
+            font-size: 32px;
+            color: #fff;
+            margin-left: 20px;
+          }
         }
 
         span {

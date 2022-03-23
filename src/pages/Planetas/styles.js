@@ -1,9 +1,26 @@
 import styled from "styled-components";
 import background from "../../assets/Background.png";
+import stars from "../../assets/Starts.svg";
 
 export const Container = styled.div`
   background-image: url(${background});
+  position: relative;
   background-size: cover;
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    background-image: url(${stars});
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    background-size: cover;
+  }
 
   .content {
     padding: 50px;
@@ -11,6 +28,8 @@ export const Container = styled.div`
     flex-wrap: wrap;
     justify-content: flex-start;
     width: 90%;
+    position: relative;
+    z-index: 2;
 
     .back-home {
       display: flex;
@@ -47,6 +66,11 @@ export const Container = styled.div`
           margin-bottom: 20px;
           .MuiFormControl-root {
             width: 350px;
+
+            input,
+            .MuiSelect-select {
+              height: 53px;
+            }
           }
 
           .MuiOutlinedInput-root {
@@ -123,6 +147,7 @@ export const Container = styled.div`
           svg {
             color: #ffffff;
             margin-left: 10px;
+            cursor: pointer;
           }
         }
       }
