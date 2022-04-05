@@ -5,8 +5,8 @@ export const columns = [
   {
     title: "Planeta",
     field: "planet",
-    render: ({ planet }: ITable) => (
-      <p style={{ minWidth: 130, margin: 0 }}>{planet}</p>
+    render: ({ name }: ITable) => (
+      <p style={{ minWidth: 130, margin: 0 }}>{name}</p>
     ),
   },
   {

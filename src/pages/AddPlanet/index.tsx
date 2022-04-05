@@ -5,10 +5,7 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import AddAPhotoOutlinedIcon from "@mui/icons-material/AddAPhotoOutlined";
 import { useNavigate } from "react-router-dom";
 import { Box, Button, IconButton, Input, Tabs, TextField } from "@mui/material";
-import {
-  createPlanet,
-  getPlanetsInformation,
-} from "../../services/ListPlanetsInformation";
+import { getPlanetsInformation } from "../../services/ListPlanetsInformation";
 import { initialValues, validationSchema } from "./validation";
 import { useFormik } from "formik";
 

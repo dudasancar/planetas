@@ -1,5 +1,5 @@
 interface ITable {
-  planet: string;
+  name: string;
   surfaceArea: number;
   sunDistance: number;
   day: Date;

@@ -10,11 +10,11 @@ const Table: React.FC = () => {
   useEffect(() => {
     getPlanetsInformation()
       .then((response: any) => {
-        setListTablePlanets(response);
-        console.log(response);
+        setListTablePlanets(response.planets);
+        console.log(response.planets);
       })
-      .catch((error: any) => {
-        console.log(error);
+      .catch((err: Error) => {
+        console.error("ops! ocorreu um erro" + err);
       });
   }, []);
 

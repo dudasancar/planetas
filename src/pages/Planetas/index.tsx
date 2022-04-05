@@ -19,9 +19,9 @@ import {
 } from "@mui/material";
 import { useFormik } from "formik";
 import { initialValues, validationSchema } from "./validation";
-import { getPlanetsCards } from "../../services/ListPlanetsCards";
 import Table from "./Table";
 import ModalDelete from "./Modal";
+import { getPlanetsInformation } from "../../services/ListPlanetsInformation";
 
 const Planetas: React.FC = () => {
   const [listPlanets, setListPlanets] = useState([]);
@@ -37,13 +37,13 @@ const Planetas: React.FC = () => {
   });
 
   useEffect(() => {
-    getPlanetsCards()
+    getPlanetsInformation()
       .then((response: any) => {
-        setListPlanets(response);
-        console.log(response);
+        setListPlanets(response.planets);
+        console.log(response.planets);
       })
-      .catch((error: any) => {
-        console.log(error);
+      .catch((err: Error) => {
+        console.error("ops! ocorreu um erro" + err);
       });
   }, []);
 
