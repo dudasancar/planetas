@@ -26,14 +26,13 @@ export const Container = styled.div`
     padding: 50px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    width: 90%;
+    justify-content: center;
+    // width: 90%;
     position: relative;
     z-index: 2;
 
     .back-home {
       display: flex;
-      margin-left: 70px;
       svg {
         color: #ffffff;
         margin-top: 3px;
@@ -48,7 +47,7 @@ export const Container = styled.div`
     }
 
     .filter-box {
-      margin: 40px 0 0 70px;
+      margin: 40px 0 0 0px;
 
       .filter {
         border: 1px solid #9c9c9c;
