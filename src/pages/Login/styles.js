@@ -42,10 +42,9 @@ export const Content = styled.div`
       }
     }
 
-    p {
+    span {
       color: #6bcecc;
       text-decoration: underline;
-      margin-top: 20px;
     }
 
     button {
@@ -53,7 +52,7 @@ export const Content = styled.div`
       height: 50px;
       background-color: #6bcecc;
       color: #ffffff;
-      margin-top: 30px;
+      margin-top: 70px;
     }
   }
 

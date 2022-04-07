@@ -5,16 +5,22 @@ import Home from "./pages/Home";
 import Planetas from "./pages/Planetas";
 import ExplorePlanets from "./pages/ExplorePlanets";
 import AddPlanet from "./pages/AddPlanet";
+import { useUser } from "./context/user";
 
 function RoutesPlanetas() {
+  const { user } = useUser();
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/planetas" element={<Planetas />} />
-        <Route path="/explorarPlaneta" element={<ExplorePlanets />} />
-        <Route path="/adicionarPlaneta" element={<AddPlanet />} />
+        {user.token != null && (
+          <>
+            <Route path="/home" element={<Home />} />
+            <Route path="/planetas" element={<Planetas />} />
+            <Route path="/explorarPlaneta" element={<ExplorePlanets />} />
+            <Route path="/adicionarPlaneta" element={<AddPlanet />} />
+          </>
+        )}
       </Routes>
     </BrowserRouter>
   );

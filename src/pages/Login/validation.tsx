@@ -7,5 +7,5 @@ export const initialValues = {
 
 export const validationSchema = object({
   email: string().email("Email inválido"),
-  password: string().min(6, "Minímo 6 caracteres"),
+  password: string().min(4, "Minímo 4 caracteres"),
 });

@@ -8,6 +8,7 @@ import { Box, Button, IconButton, Input, Tabs, TextField } from "@mui/material";
 import { getPlanetsInformation } from "../../services/ListPlanetsInformation";
 import { initialValues, validationSchema } from "./validation";
 import { useFormik } from "formik";
+import { createPlanet } from "../../services/CreatePlanet";
 
 interface INewPlanet {
   name: string;
@@ -16,7 +17,7 @@ interface INewPlanet {
   day: string;
   gravity: string;
   description: string;
-  image: string;
+  image: unknown;
 }
 
 const AddPlanet: React.FC = () => {
@@ -61,12 +62,25 @@ const AddPlanet: React.FC = () => {
     });
   };
 
+  const register = async (values: INewPlanet) => {
+    values.image = baseImage;
+    console.log(values);
+    createPlanet(
+      values.name,
+      values.surfaceArea,
+      values.sunDistance,
+      values.day,
+      values.gravity,
+      values.description,
+      values.image
+    );
+    navigate("/planetas");
+  };
+
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-    },
+    onSubmit: register,
   });
 
   return (
@@ -79,67 +93,66 @@ const AddPlanet: React.FC = () => {
             Home/Planetas/<strong>Adicionar Planeta</strong>
           </p>
         </div>
-        <div className="box">
-          <Box style={{ maxWidth: 520, maxHeight: 520 }}>
-            <div>
-              <div
-                className="image"
-                style={{
-                  backgroundImage: `url('${baseImage}')`,
-                }}
-              >
-                {baseImage ? (
-                  <div></div>
-                ) : (
-                  <div>
-                    <label>
-                      <Input
-                        inputProps={{ accept: "image/*" }}
-                        type="file"
-                        onChange={(e) => UploadImage(e)}
-                        name="image"
-                        id="image"
-                        value={formik.values.image}
-                        // value={listPlanets.image}
-                      />
-                      <IconButton component="span">
-                        <AddAPhotoOutlinedIcon />
-                      </IconButton>
-                      Add Foto
-                    </label>
-                  </div>
-                )}
+        <form className="form" onSubmit={formik.handleSubmit}>
+          <div className="box">
+            <Box style={{ maxWidth: 520, maxHeight: 520 }}>
+              <div>
+                <div
+                  className="image"
+                  style={{
+                    backgroundImage: `url('${baseImage}')`,
+                  }}
+                >
+                  {baseImage ? (
+                    <div></div>
+                  ) : (
+                    <div>
+                      <label>
+                        <Input
+                          inputProps={{ accept: "image/*" }}
+                          type="file"
+                          onChange={(e) => UploadImage(e)}
+                          name="image"
+                          id="image"
+                          value={formik.values.image}
+                        />
+                        <IconButton component="span">
+                          <AddAPhotoOutlinedIcon />
+                        </IconButton>
+                        Add Foto
+                      </label>
+                    </div>
+                  )}
+                </div>
               </div>
+            </Box>
+            <div className="description-box">
+              <p>PLANETA</p>
+              <h1>-</h1>
+              <p className="description">Informe uma descrição...</p>
             </div>
-          </Box>
-          <div className="description-box">
-            <p>PLANETA</p>
-            <h1>-</h1>
-            <p className="description">Informe uma descrição...</p>
           </div>
-        </div>
-        <Informations>
-          <div className="info-box">
-            <p>Área de superfície</p>
-            <p>-</p>
-          </div>
-          <div className="info-box">
-            <p>Distância do sol</p>
-            <p>-</p>
-          </div>
-          <div className="info-box">
-            <p>Duração do dia</p>
-            <p>-</p>
-          </div>
-          <div className="info-box">
-            <p>Gravidade</p>
-            <p>-</p>
-          </div>
-        </Informations>
-        <Form>
-          <div className="content">
-            <h1>Informe os dados do planeta</h1>
-            <form className="form" onSubmit={formik.handleSubmit}>
+          <Informations>
+            <div className="info-box">
+              <p>Área de superfície</p>
+              <p>-</p>
+            </div>
+            <div className="info-box">
+              <p>Distância do sol</p>
+              <p>-</p>
+            </div>
+            <div className="info-box">
+              <p>Duração do dia</p>
+              <p>-</p>
+            </div>
+            <div className="info-box">
+              <p>Gravidade</p>
+              <p>-</p>
+            </div>
+          </Informations>
+          <Form>
+            <div className="content">
+              <h1>Informe os dados do planeta</h1>
               <div className="textfield-2">
                 <TextField
                   name="name"
@@ -196,9 +209,9 @@ const AddPlanet: React.FC = () => {
                   Salvar
                 </Button>
               </div>
-            </form>
-          </div>
-        </Form>
+            </div>
+          </Form>
+        </form>
       </div>
     </Container>
   );

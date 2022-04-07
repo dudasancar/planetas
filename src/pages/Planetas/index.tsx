@@ -22,6 +22,7 @@ import { initialValues, validationSchema } from "./validation";
 import Table from "./Table";
 import ModalDelete from "./Modal";
 import { getPlanetsInformation } from "../../services/ListPlanetsInformation";
+import { deletePlanetById } from "../../services/DeletePlanet";
 
 const Planetas: React.FC = () => {
   const [listPlanets, setListPlanets] = useState([]);
@@ -43,17 +44,13 @@ const Planetas: React.FC = () => {
         console.log(response.planets);
       })
       .catch((err: Error) => {
-        console.error("ops! ocorreu um erro" + err);
+        alert("ops! ocorreu um erro" + err);
       });
-  }, []);
+  }, [openModalDelete]);
 
   const handleSearch = (event: any) => {};
   return (
     <Container>
-      <ModalDelete
-        closeModal={() => setOpenModalDelete(false)}
-        open={openModalDelete}
-      />
       <Header />
       <div className="content">
         <div className="back-home">
@@ -165,6 +162,11 @@ const Planetas: React.FC = () => {
                   onClick={() => navigate("/explorarPlaneta")}
                 />
               </div>
+              <ModalDelete
+                closeModal={() => setOpenModalDelete(false)}
+                open={openModalDelete}
+                deleteById={() => deletePlanetById(planet.id)}
+              />
             </div>
           ))}
         </div>

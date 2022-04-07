@@ -1,18 +1,41 @@
 import { Button, InputAdornment, TextField } from "@mui/material";
 import { useFormik } from "formik";
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../assets/Logo.svg";
 import { initialValues, validationSchema } from "./validation";
 import { Container, Content } from "./styles";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { LoginUser } from "../../services/auth";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "../../context/user";
 
 const Login: React.FC = () => {
+  const navigate = useNavigate();
+  const { user, setUser } = useUser();
+
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      LoginUser(values.email, values.password)
+        .then((response) => {
+          console.log(response.data);
+          sessionStorage.setItem("user", response.data);
+          if (response.data.token) {
+            setUser({
+              ...user,
+              token: response.data.token,
+              email: response.data.email,
+            });
+            navigate("/home");
+          }
+        })
+        .catch((err) => {
+          alert(
+            "Desculpe! Não encontramos um registro com esse usuário e senha."
+          );
+        });
     },
   });
   return (
@@ -56,7 +79,7 @@ const Login: React.FC = () => {
                 ),
               }}
             />
-            <p>Esqueci minha senha</p>
+            {/* <span>Esqueci minha senha</span> */}
             <Button type="submit">Entrar</Button>
           </div>
         </form>

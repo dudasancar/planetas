@@ -1,15 +1,26 @@
 import { Modal } from "@material-ui/core";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ContentModal } from "./styles";
 import Mercury from "../../../assets/Mercury.png";
 import { Button } from "@mui/material";
+import { getPlanetsInformation } from "../../../services/ListPlanetsInformation";
 
 interface IProps {
   closeModal: () => void;
   open: boolean;
+  deleteById: () => void;
 }
 
-const ModalDelete = ({ closeModal, open }: IProps): React.ReactElement => {
+const ModalDelete = ({
+  closeModal,
+  open,
+  deleteById,
+}: IProps): React.ReactElement => {
+  const deleteCard = () => {
+    deleteById();
+    closeModal();
+  };
+
   return (
     <>
       <Modal
@@ -41,7 +52,11 @@ const ModalDelete = ({ closeModal, open }: IProps): React.ReactElement => {
               >
                 Voltar
               </Button>
-              <Button className="btn-delete" variant="outlined">
+              <Button
+                className="btn-delete"
+                variant="outlined"
+                onClick={deleteCard}
+              >
                 Deletar
               </Button>
             </div>
